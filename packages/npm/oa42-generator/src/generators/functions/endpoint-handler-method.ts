@@ -476,7 +476,10 @@ function* generateStatusCodeCaseClauses(apiModel: models.Api, operationModel: mo
 
   yield itt`
     default:
-      throw new lib.Unreachable();
+      serverOutgoingResponse = {
+        status: outgoingResponse.status,
+        headers: {},
+      };
   `;
 }
 

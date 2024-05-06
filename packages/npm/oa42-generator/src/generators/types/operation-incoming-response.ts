@@ -1,3 +1,4 @@
+import { statusCodes } from "oa42-lib";
 import * as models from "../../models/index.js";
 import { joinIterable, mapIterable } from "../../utils/index.js";
 import { itt } from "../../utils/iterable-text-template.js";
@@ -22,12 +23,23 @@ function* generateElements(apiModel: models.Api, operationModel: models.Operatio
     yield itt`never`;
   }
 
+  const statusCodesAvailable = new Set(statusCodes);
+
   for (const operationResultModel of operationModel.operationResults) {
+    for (const statusCode of operationResultModel.statusCodes) {
+      statusCodesAvailable.delete(statusCode);
+    }
     yield itt`
       ${generateParametersContainerType(operationModel, operationResultModel)} &
       (
         ${joinIterable(generateBodyContainerTypes(apiModel, operationModel, operationResultModel), " |\n")}
       )
+    `;
+  }
+
+  if (statusCodesAvailable.size > 0) {
+    yield itt`
+      lib.StatusContainer<${joinIterable(mapIterable(statusCodesAvailable, String), " |\n")}>
     `;
   }
 }

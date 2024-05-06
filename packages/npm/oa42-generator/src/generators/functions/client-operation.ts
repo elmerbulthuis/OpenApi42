@@ -361,7 +361,14 @@ function* generateResponseStatusCodeCaseClauses(
 
   yield itt`
     default:
-      throw new lib.UnexpectedStatusCode(fetchResponse.status)  
+      if(fetchResponse.status >= 100 && fetchResponse.status < 600) {
+        return {
+          status: fetchResponse.status as any,
+        }
+      }
+      else {
+        throw new lib.UnexpectedStatusCode(fetchResponse.status);
+      }  
   `;
 }
 

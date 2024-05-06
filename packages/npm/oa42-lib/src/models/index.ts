@@ -4,4 +4,3 @@ export * from "./parameters.js";
 export * from "./status.js";
 export * from "./stream.js";
 export * from "./text.js";
-export * from "./unknown.js";
