@@ -1,6 +1,6 @@
 # Skiffa
 
-With love from [Scheveningen](https://www.youtube.com/live/DaG5JReOYEw?si=Jbe5P41pGgW92AZO)!
+With love from [Scheveningen](https://www.youtube.com/live/A5kXiKzbBFs?si=D1ehBSQQ43zCyDb9)!
 
 We love our early bird sponsors!
 
